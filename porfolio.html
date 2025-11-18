@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hemavathy K - UI/UX Designer & Developer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 60px 40px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.3);
+            border-bottom: 3px solid #ff006e;
+        }
+
+        h1 {
+            font-size: 3.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #ff006e, #8338ec);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tagline {
+            font-size: 1.3em;
+            color: #a0a0ff;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            font-size: 0.95em;
+        }
+
+        .contact-info a {
+            color: #ff006e;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-info a:hover {
+            color: #8338ec;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 60px auto;
+            padding: 0 40px;
+        }
+
+        section {
+            margin-bottom: 100px;
+        }
+
+        h2 {
+            font-size: 2.5em;
+            margin-bottom: 50px;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #ff006e, #8338ec);
+            margin: 15px auto 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .card {
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            background: linear-gradient(135deg, rgba(255, 0, 110, 0.8), rgba(131, 56, 236, 0.8));
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 60px rgba(255, 0, 110, 0.5);
+        }
+
+        .card.large {
+            grid-column: span 1;
+        }
+
+        .card.xl {
+            grid-column: span 2;
+        }
+
+        @media (max-width: 1024px) {
+            .card.xl {
+                grid-column: span 1;
+            }
+        }
+
+        .card h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .card p {
+            font-size: 0.95em;
+            line-height: 1.6;
+            opacity: 0.95;
+            margin-bottom: 15px;
+        }
+
+        .card-icon {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .card.hero {
+            background: linear-gradient(135deg, #ff006e 0%, #8338ec 100%);
+            grid-column: span 1;
+        }
+
+        .card.brand {
+            background: linear-gradient(135deg, #ff9500 0%, #ff6b00 100%);
+        }
+
+        .card.food {
+            background: linear-gradient(135deg, #ff006e 0%, #ff1654 100%);
+        }
+
+        .card.fitness {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        .card.about {
+            background: linear-gradient(135deg, #8338ec 0%, #5e2eea 100%);
+            grid-column: span 1;
+            grid-row: span 2;
+        }
+
+        .card.contact {
+            background: linear-gradient(135deg, #00d4ff 0%, #0099ff 100%);
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .skill-tag {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.85em;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s;
+        }
+
+        .skill-tag:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(1.05);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid #fff;
+            border-radius: 25px;
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 0.9em;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(1.05);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #ff006e;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 40px;
+            text-align: center;
+            border-top: 3px solid #ff006e;
+            margin-top: 100px;
+        }
+
+        .animated-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .card.xl, .card.about {
+                grid-column: span 1;
+                grid-row: auto;
+            }
+
+            .animated-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .highlight {
+            color: #ff006e;
+            font-weight: 600;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            margin: 10% auto;
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid #ff006e;
+            max-width: 700px;
+            max-height: 80vh;
+            overflow-y: auto;
+            animation: slideIn 0.3s ease;
+            box-shadow: 0 20px 60px rgba(255, 0, 110, 0.3);
+        }
+
+        @keyframes slideIn {
+            from { 
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to { 
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close {
+            color: #ff006e;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .close:hover {
+            color: #8338ec;
+            transform: scale(1.2);
+        }
+
+        .modal h2 {
+            color: #ff006e;
+            font-size: 2em;
+            margin-bottom: 20px;
+            display: block;
+            text-align: left;
+        }
+
+        .modal h2::after {
+            display: none;
+        }
+
+        .modal-section {
+            margin-bottom: 25px;
+        }
+
+        .modal-section h3 {
+            color: #8338ec;
+            font-size: 1.3em;
+            margin-bottom: 12px;
+            margin-top: 20px;
+        }
+
+        .modal-section p {
+            line-height: 1.8;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        .modal-section ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .modal-section li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .modal-section li:before {
+            content: "▸";
+            color: #ff006e;
+            position: absolute;
+            left: 0;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, rgba(255, 0, 110, 0.3), rgba(131, 56, 236, 0.3));
+            border-radius: 15px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            border: 2px dashed rgba(255, 0, 110, 0.5);
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            background: rgba(255, 0, 110, 0.2);
+            padding: 10px 15px;
+            border-radius: 10px;
+            border-left: 3px solid #ff006e;
+            font-size: 0.9em;
+        }
+
+        .meta-item strong {
+            color: #ff006e;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>HEMAVATHY K</h1>
+        <p class="tagline">UI/UX Designer • Web Developer • Data Analytics Enthusiast</p>
+        <div class="contact-info">
+            <a href="tel:+916381142279">📱 +91 6381142279</a>
+            <a href="mailto:hemavathy1405@gmail.com">📧 hemavathy1405@gmail.com</a>
+            <a href="https://linkedin.com/in/hemavathy" target="_blank">💼 LinkedIn</a>
+            <a href="https://github.com/hemavathy" target="_blank">🐙 GitHub</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Hero Section with Stats -->
+        <section class="stats">
+            <div class="stat-item">
+                <div class="stat-number">5+</div>
+                <div class="stat-label">Projects Completed</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">8.2</div>
+                <div class="stat-label">CGPA | B.Tech AI&DS</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">10+</div>
+                <div class="stat-label">Skills & Tools</div>
+            </div>
+        </section>
+
+        <!-- Projects Grid -->
+        <section>
+            <h2>Featured Projects</h2>
+            <div class="grid">
+                <!-- About Card -->
+                <div class="card about">
+                    <div class="card-icon">✨</div>
+                    <h3>About Me</h3>
+                    <p>Motivated technology enthusiast specializing in UI/UX design and web development. Passionate about creating user-centric solutions with data-driven insights.</p>
+                    <div class="skills-container">
+                        <span class="skill-tag">Figma</span>
+                        <span class="skill-tag">Adobe XD</span>
+                        <span class="skill-tag">UI/UX</span>
+                    </div>
+                </div>
+
+                <!-- Women Safety Project -->
+                <div class="card" style="background: linear-gradient(135deg, rgba(255, 0, 110, 0.9), rgba(255, 22, 84, 0.9));" onclick="openModal('womensafety')">
+                    <div class="card-icon">🛡️</div>
+                    <h3>Women Safety Analytics</h3>
+                    <p>Data-driven solution analyzing unsafe zones with real-time dashboards. Helps authorities identify risk patterns and enhance public safety.</p>
+                    <button class="btn">View Project</button>
+                </div>
+
+                <!-- Student Gate Pass Project -->
+                <div class="card" style="background: linear-gradient(135deg, rgba(131, 56, 236, 0.9), rgba(94, 46, 234, 0.9));" onclick="openModal('gatepass')">
+                    <div class="card-icon">🎓</div>
+                    <h3>Gate Pass System</h3>
+                    <p>Digital platform for tracking student entry/exit with secure authentication. Reduces manual work and improves campus security.</p>
+                    <button class="btn">View Project</button>
+                </div>
+
+                <!-- Food Delivery Project -->
+                <div class="card food" onclick="openModal('fooddelivery')">
+                    <div class="card-icon">🍔</div>
+                    <h3>Food Delivery App</h3>
+                    <p>Fully functional app with user authentication, restaurant listings, and order tracking. Built during internship at M3 Digital Media.</p>
+                    <button class="btn">View Project</button>
+                </div>
+
+                <!-- Fitness Club Login -->
+                <div class="card fitness" onclick="openModal('fitness')">
+                    <div class="card-icon">💪</div>
+                    <h3>Fitness Club Login</h3>
+                    <p>Modern member login interface with smooth animations and glassmorphic design. Combines aesthetics with usability.</p>
+                    <button class="btn">View Project</button>
+                </div>
+
+                <!-- Dosa Branding -->
+                <div class="card" style="background: linear-gradient(135deg, rgba(255, 149, 0, 0.9), rgba(255, 107, 0, 0.9));" onclick="openModal('dosa')">
+                    <div class="card-icon">🍲</div>
+                    <h3>Dosa Branding Campaign</h3>
+                    <p>Creative branding design for food delivery promotion. Eye-catching typography and visual hierarchy for maximum engagement.</p>
+                    <button class="btn">View Project</button>
+                </div>
+
+                <!-- E-commerce Web Project -->
+                <div class="card" style="background: linear-gradient(135deg, rgba(0, 212, 255, 0.9), rgba(0, 153, 255, 0.9));" onclick="openModal('ecommerce')">
+                    <div class="card-icon">🛒</div>
+                    <h3>E-commerce Website</h3>
+                    <p>Frontend-focused responsive website built with HTML, CSS & JavaScript. Features clean design and intuitive navigation.</p>
+                    <button class="btn">View Project</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section>
+            <h2>Skills & Tools</h2>
+            <div class="animated-grid">
+                <div class="card" style="background: linear-gradient(135deg, rgba(255, 0, 110, 0.85), rgba(131, 56, 236, 0.85));">
+                    <div class="card-icon">🎨</div>
+                    <h3>Design</h3>
+                    <p><span class="highlight">Figma</span> • <span class="highlight">Adobe XD</span> • UI/UX Design • Wireframing • Prototyping • Visual Design</p>
+                </div>
+
+                <div class="card" style="background: linear-gradient(135deg, rgba(131, 56, 236, 0.85), rgba(94, 46, 234, 0.85));">
+                    <div class="card-icon">💻</div>
+                    <h3>Development</h3>
+                    <p><span class="highlight">HTML</span> • <span class="highlight">CSS</span> • <span class="highlight">JavaScript</span> • Python • Responsive Design</p>
+                </div>
+
+                <div class="card" style="background: linear-gradient(135deg, rgba(255, 149, 0, 0.85), rgba(255, 107, 0, 0.85));">
+                    <div class="card-icon">📊</div>
+                    <h3>Analytics</h3>
+                    <p><span class="highlight">Power BI</span> • <span class="highlight">Google Analytics</span> • Data Visualization • Business Analytics • Excel</p>
+                </div>
+
+                <div class="card" style="background: linear-gradient(135deg, rgba(0, 212, 255, 0.85), rgba(0, 153, 255, 0.85));">
+                    <div class="card-icon">🚀</div>
+                    <h3>Other Tools</h3>
+                    <p><span class="highlight">GitHub</span> • <span class="highlight">JIRA</span> • SEO • Digital Marketing • AWS • R (Basics)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section>
+            <h2>Achievements & Certifications</h2>
+            <div class="grid">
+                <div class="card" style="background: linear-gradient(135deg, rgba(255, 0, 110, 0.8), rgba(255, 22, 84, 0.8));">
+                    <div class="card-icon">🏆</div>
+                    <h3>Smart India Hackathon</h3>
+                    <p>Participated in SIH 2023 & 2024, showcasing innovative solutions for real-world problems.</p>
+                </div>
+
+                <div class="card" style="background: linear-gradient(135deg, rgba(131, 56, 236, 0.8), rgba(94, 46, 234, 0.8));">
+                    <div class="card-icon">☁️</div>
+                    <h3>Cloud Computing</h3>
+                    <p>Simplilearn Cloud Computing Certificate & AWS Cloud Certification completed.</p>
+                </div>
+
+                <div class="card" style="background: linear-gradient(135deg, rgba(255, 149, 0, 0.8), rgba(255, 107, 0, 0.8));">
+                    <div class="card-icon">🎯</div>
+                    <h3>IBM Recognition</h3>
+                    <p>Received "Envisioning Your Solution" Award from IBM for innovative approach.</p>
+                </div>
+
+                <div class="card" style="background: linear-gradient(135deg, rgba(0, 212, 255, 0.8), rgba(0, 153, 255, 0.8));">
+                    <div class="card-icon">📚</div>
+                    <h3>Big Data Training</h3>
+                    <p>Completed Big Data training by KGiSL & E-Cell IIT Hyderabad.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section style="text-align: center; padding: 60px 0;">
+            <h2 style="margin-bottom: 40px;">Let's Work Together</h2>
+            <p style="font-size: 1.1em; margin-bottom: 30px; opacity: 0.9;">
+                I'm always excited to collaborate on innovative UI/UX and web development projects.
+            </p>
+            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                <a href="mailto:hemavathy1405@gmail.com" class="btn" style="background: linear-gradient(135deg, #ff006e, #8338ec); border-color: #ff006e; font-size: 1.05em; padding: 15px 40px;">Get In Touch</a>
+                <a href="https://linkedin.com/in/hemavathy" target="_blank" class="btn" style="font-size: 1.05em; padding: 15px 40px;">Connect on LinkedIn</a>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p style="margin-bottom: 15px;">© 2025 Hemavathy K. All rights reserved.</p>
+        <p style="opacity: 0.7; font-size: 0.9em;">
+            📍 Coimbatore, Tamil Nadu | B.Tech AI&DS (2022-2026) | KGISL Institute of Technology
+        </p>
+    </footer>
+
+    <!-- Modals -->
+    <div id="womensafetyModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('womensafety')">&times;</span>
+            <h2>Women Safety Analytics System</h2>
+            <div class="project-image">
+                <img src="women.png" alt="Dosa Branding">
+            </div>
+            <div class="project-meta">
+                <div class="meta-item"><strong>Type:</strong> IV Year Project</div>
+                <div class="meta-item"><strong>Duration:</strong> 4 Weeks</div>
+                <div class="meta-item"><strong>Status:</strong> Completed</div>
+            </div>
+            
+            <div class="modal-section">
+                <h3>📋 Project Overview</h3>
+                <p>A comprehensive data-driven solution designed to analyze and predict unsafe zones using real-time datasets and interactive visual dashboards. This project helps authorities and public safety officials identify risk patterns and enhance public safety measures effectively.</p>
+            </div>
+
+            <div class="modal-section">
+                <h3>🎯 Key Features</h3>
+                <ul>
+                    <li>Real-time data collection and analysis</li>
+                    <li>Predictive analytics for unsafe zone identification</li>
+                    <li>Interactive visual dashboards and heat maps</li>
+                    <li>Risk pattern recognition algorithms</li>
+                    <li>Authority notification system</li>
+                    <li>Historical data tracking and reporting</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h3>🛠️ Technologies & Tools</h3>
+                <p>Python, Power BI, Google Analytics, Data Visualization, Machine Learning, Real-time Databases</p>
+            </div>
+
+            <div class="modal-section">
+                <h3>💡 Impact</h3>
+                <p>This solution provides authorities with actionable insights to enhance public safety measures, enabling them to allocate resources more effectively and prevent incidents before they occur.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="gatepassModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('gatepass')">&times;</span>
+            <h2>Student Gate Pass Management System</h2>
+            <div class="project-image">
+                <img src="gate.png" alt="Dosa Branding">
+
+            </div>
+            <div class="project-meta">
+                <div class="meta-item"><strong>Type:</strong> Smart India Hackathon 2023</div>
+                <div class="meta-item"><strong>Duration:</strong> 2 Days</div>
+                <div class="meta-item"><strong>Status:</strong> Completed</div>
+            </div>
+            
+            <div class="modal-section">
+                <h3>📋 Project Overview</h3>
+                <p>A digital gate pass platform designed to streamline student entry and exit tracking using secure authentication. This system reduces manual work, improves campus security, and maintains accurate records.</p>
+            </div>
+
+            <div class="modal-section">
+                <h3>🎯 Key Features</h3>
+                <ul>
+                    <li>Secure user authentication</li>
+                    <li>Real-time entry/exit tracking</li>
+                    <li>Digital gate pass generation</li>
+                    <li>Automatic record maintenance</li>
+                    <li>Admin dashboard for monitoring</li>
+                    <li>SMS/Email notifications</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h3>🛠️ Technologies & Tools</h3>
+                <p>Frontend: HTML, CSS, JavaScript | Backend: Python | Database: SQL | Authentication: Secure Protocols</p>
+            </div>
+
+            <div class="modal-section">
+                <h3>💡 Benefits</h3>
+                <p>Significantly reduces administrative burden, enhances campus security through real-time tracking, and ensures accurate record-keeping for all student movements.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="fooddeliveryModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('fooddelivery')">&times;</span>
+            <h2>Food Delivery Application</h2>
+            <div class="project-image">
+                <img src="food.png" alt="Dosa Branding">
+
+            </div>
+            <div class="project-meta">
+                <div class="meta-item"><strong>Role:</strong> Android App Developer</div>
+                <div class="meta-item"><strong>Company:</strong> M3 Digital Media</div>
+                <div class="meta-item"><strong>Duration:</strong> Jun - Jul 2024</div>
+            </div>
+            
+            <div class="modal-section">
+                <h3>📋 Project Overview</h3>
+                <p>Developed a fully functional food delivery application with comprehensive features for users to browse restaurants, place orders, and track deliveries in real-time.</p>
+            </div>
+
+            <div class="modal-section">
+                <h3>🎯 Key Features Implemented</h3>
+                <ul>
+                    <li>User authentication and profile management</li>
+                    <li>Restaurant listing with search and filters</li>
+                    <li>Menu browsing with detailed item information</li>
+                    <li>Shopping cart and checkout functionality</li>
+                    <li>Order tracking in real-time</li>
+                    <li>Payment gateway integration</li>
+                    <li>Order history and reviews</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h3>🛠️ Technologies & Tools</h3>
+                <p>Android, Java, Firebase, REST API, UI/UX Design, Mobile Optimization</p>
+            </div>
+
+            <div class="modal-section">
+                <h3>💡 Learning Outcome</h3>
+                <p>Gained hands-on experience in mobile app development, API integration, user interface design, and backend connectivity during this internship.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="fitnessModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('fitness')">&times;</span>
+            <h2>Fitness Club Member Login</h2>
+            <div class="project-image">
+                <img src="gym.png" alt="Dosa Branding">
+
+            </div>
+            <div class="project-meta">
+                <div class="meta-item"><strong>Type:</strong> UI/UX Design</div>
+                <div class="meta-item"><strong>Design Style:</strong> Glassmorphism</div>
+                <div class="meta-item"><strong>Status:</strong> Completed</div>
+            </div>
+            
+            <div class="modal-section">
+                <h3>📋 Project Overview</h3>
+                <p>A modern and elegant member login interface for a fitness club featuring glassmorphic design elements with smooth animations and intuitive user interaction patterns.</p>
+            </div>
+
+            <div class="modal-section">
+                <h3>🎯 Design Highlights</h3>
+                <ul>
+                    <li>Glassmorphic UI elements with frosted glass effect</li>
+                    <li>Smooth animations and transitions</li>
+                    <li>Intuitive form layout and input fields</li>
+                    <li>"Remember Me" functionality</li>
+                    <li>Responsive design for all devices</li>
+                    <li>Modern color palette and typography</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h3>🛠️ Design Tools & Technologies</h3>
+                <p>Figma, Adobe XD, CSS3, HTML5, JavaScript, Responsive Design Principles</p>
+            </div>
+
+            <div class="modal-section">
+                <h3>💡 Design Philosophy</h3>
+                <p>Combined aesthetic appeal with user experience best practices to create an engaging login interface that encourages member interaction while maintaining security and ease of use.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="dosaModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('dosa')">&times;</span>
+            <h2>Dosa Branding Campaign</h2>
+            <div class="project-image">
+               <img src="dosa.png" alt="Dosa Branding">
+
+            </div>
+            <div class="project-meta">
+                <div class="meta-item"><strong>Type:</strong> Branding & Marketing</div>
+                <div class="meta-item"><strong>Location:</strong> Saravana Patty, Coimbatore</div>
+                <div class="meta-item"><strong>Status:</strong> Completed</div>
+            </div>
+            
+            <div class="modal-section">
+                <h3>📋 Project Overview</h3>
+                <p>Created an eye-catching branding design for a food delivery promotion campaign. Features compelling typography and visual hierarchy to maximize customer engagement and drive conversions.</p>
+            </div>
+
+            <div class="modal-section">
+                <h3>🎯 Design Elements</h3>
+                <ul>
+                    <li>Bold and attractive typography</li>
+                    <li>Strategic visual hierarchy</li>
+                    <li>High-quality product imagery</li>
+                    <li>Compelling call-to-action</li>
+                    <li>Brand color consistency</li>
+                    <li>Mobile-optimized layout</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h3>🛠️ Design Tools Used</h3>
+                <p>Adobe Photoshop, Adobe Illustrator, Figma, Canva, Color Theory, Typography Design</p>
+            </div>
+
+            <div class="modal-section">
+                <h3>💡 Campaign Goals</h3>
+                <p>Increase brand awareness for Dosa offerings and drive food delivery conversions through visually appealing design and strategic messaging that resonates with the target audience.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="ecommerceModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('ecommerce')">&times;</span>
+            <h2>E-commerce Website</h2>
+            <div class="project-image">
+                <img src="e.png" alt="Dosa Branding">
+
+            </div>
+            <div class="project-meta">
+                <div class="meta-item"><strong>Type:</strong> Frontend Development</div>
+                <div class="meta-item"><strong>Duration:</strong> Mini Project</div>
+                <div class="meta-item"><strong>Status:</strong> Completed</div>
+            </div>
+            
+            <div class="modal-section">
+                <h3>📋 Project Overview</h3>
+                <p>Developed a responsive e-commerce website frontend focused on clean design principles and intuitive navigation. Built entirely with HTML, CSS, and JavaScript for optimal performance.</p>
+            </div>
+
+            <div class="modal-section">
+                <h3>🎯 Key Features</h3>
+                <ul>
+                    <li>Responsive design for all devices</li>
+                    <li>Product catalog with filtering</li>
+                    <li>Shopping cart functionality</li>
+                    <li>Product detail pages</li>
+                    <li>User-friendly navigation</li>
+                    <li>Fast loading performance</li>
+                    <li>Clean and modern UI</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h3>🛠️ Technologies Used</h3>
+                <p>HTML5, CSS3, JavaScript (ES6+), Responsive Design, DOM Manipulation, Local Storage</p>
+            </div>
+
+            <div class="modal-section">
+                <h3>💡 Design Approach</h3>
+                <p>Focused on creating a seamless shopping experience with clean aesthetics, intuitive layout, and smooth interactions that encourage user engagement and conversions.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(projectName) {
+            const modalId = projectName + 'Modal';
+            document.getElementById(modalId).style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(projectName) {
+            const modalId = projectName + 'Modal';
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Close modal when pressing Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const modals = document.querySelectorAll('.modal');
+                modals.forEach(modal => {
+                    if (modal.style.display === 'block') {
+                        modal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
